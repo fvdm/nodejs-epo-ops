@@ -1,0 +1,29 @@
+{
+  "author": {
+    "name":               "Franklin van de Meent",
+    "email":              "fr@nkl.in",
+    "url":                "http://frankl.in"
+  },
+  "name":                 "epo-ops",
+  "description":          "Access some basic EPO Open Patent Services",
+  "version":              "0.1.0",
+  "repository": {
+    "type":               "git",
+    "url":                "git://github.com/fvdm/nodejs-epo-ops.git"
+  },
+  "bugs": {
+    "url":                "https://github.com/fvdm/nodejs-epo-ops/issues"
+  },
+  "main":                 "epo-ops.js",
+  "dependencies":         {},
+  "devDependencies":      {},
+  "optionalDependencies": {},
+  "engines": {
+    "node":               "*"
+  },
+  "keywords":             ["patents", "search", "middleware", "gov"],
+  "license": {
+    "type":               "Public Domain",
+    "url":                "https://github.com/fvdm/nodejs-epo-ops/raw/master/UNLICENSE"
+  }
+}
