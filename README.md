@@ -1,3 +1,4 @@
+[![build status](https://secure.travis-ci.org/fvdm/nodejs-epo-ops.png)](http://travis-ci.org/fvdm/nodejs-epo-ops)
 # epo-ops
 
 NodeJS module to access some basic EPO Open Patent Services
