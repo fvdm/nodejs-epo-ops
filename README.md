@@ -1,118 +1,49 @@
-# epo-ops
+epo-ops
+=======
 
-NodeJS module to access some basic EPO Open Patent Services
+Access some basic EPO Open Patent Services with node.js
 
-# Installation
 
-With NPM:
-
-```
-npm install epo-ops
-```
-
-From source
-
-```
-git clone https://github.com/fvdm/nodejs-epo-ops
-npm install ./nodejs-epo-ops
-```
-
-# Usage
+Example
+-------
 
 ```js
-var ops = require('epo-ops')
+var ops = require ('epo-ops');
 
-ops.search( 'test', function( results ) {
-	results.forEach( function( doc, docId ) {
-		console.log( docId +': '+ doc.abstract.p[0]['$'] )
-	})
-})
+ops.search ('test', function (results) {
+  results.forEach (function (doc, docId) {
+    console.log (docId +': '+ doc.abstract.p[0].$);
+  });
+});
 ```
 
-# Methods
 
-## search
-### ( query, [constituents], callback )
+Installation
+------------
+
+Normal: `npm install epo-ops`
+
+Development: `npm install fvdm/nodejs-epo-ops#develop`
+
+
+.search ( query, [constituents], callback )
+-------
 
 Search patents worldwide.
 
-<table>
-	<th>parameter</th>
-	<th>description</th>
-	<th>required</th>
-	<th>values</th>
-	<th>default</th>
-	<tr>
-		<td>query</td>
-		<td>keywords to search on</td>
-		<td>yes</td>
-		<td>text</td>
-		<td></td>
-	</tr>
-	<tr>
-		<td>constituents</td>
-		<td>result type</td>
-		<td>optional</td>
-		<td>
-			abstract<br>
-			biblio<br>
-			full-cycle<br>
-			abstract,full-cycle<br>
-			biblio,full-cycle
-		</td>
-		<td>abstract</td>
-	</tr>
-	<tr>
-		<td>callback</td>
-		<td>function called when results are ready</td>
-		<td>yes</td>
-		<td>resultsObject</td>
-		<td></td>
-	</tr>
-</table>
 
-## talk
-### ( method, path, [fields], callback )
+parameter    | type     | required | default  | description
+:------------|:---------|:---------|:---------|:-----------------
+query        | string   | yes      |          | search keywords
+constituents | string   | no       | abstract | result type
+callback     | function | yes      |          | callback function
 
-Communicate with the service.
 
-<table>
-	<th>parameter</th>
-	<th>description</th>
-	<th>required</th>
-	<th>values</th>
-	<th>default</th>
-	<tr>
-		<td>method</td>
-		<td>HTTP method</td>
-		<td>yes</td>
-		<td>GET, POST, PUT, DELETE</td>
-		<td></td>
-	</tr>
-	<tr>
-		<td>path</td>
-		<td>Request URL path after `/2.6.2/rest-services/`</td>
-		<td>yes</td>
-		<td></td>
-		<td></td>
-	</tr>
-	<tr>
-		<td>fields</td>
-		<td>GET or POST parameters</td>
-		<td>no</td>
-		<td>object</td>
-		<td></td>
-	</tr>
-	<tr>
-		<td>callback</td>
-		<td>function called when results are ready</td>
-		<td>yes</td>
-		<td>resultsObject</td>
-		<td></td>
-	</tr>
-</table>
+**constituents** can be `abstract`, `biblio`, `full-cycle` or comma-seperated combination.
 
-# Unlicense
+
+Unlicense
+---------
 
 This is free and unencumbered software released into the public domain.
 
@@ -138,3 +69,11 @@ ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 OTHER DEALINGS IN THE SOFTWARE.
 
 For more information, please refer to <http://unlicense.org/>
+
+
+Author
+------
+
+Franklin van de Meent
+| [Website](https://frankl.in)
+| [Github](https://github.com/fvdm)
