@@ -22,8 +22,5 @@
     "node":               "*"
   },
   "keywords":             ["patents", "search", "middleware", "gov"],
-  "license": {
-    "type":               "Public Domain",
-    "url":                "https://github.com/fvdm/nodejs-epo-ops/raw/master/UNLICENSE"
-  }
+  "license":              "Unlicense"
 }
