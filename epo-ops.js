@@ -1,10 +1,10 @@
 /*
-Module name: epo-ops
-Description: Access some basic EPO Open Patent Services with node.js
-Author: Franklin van de Meent (https://frankl.in);
-Source & docs: https://github.com/fvdm/nodejs-epo-ops
-Feedback: https://github.com/fvdm/nodejs-epo-ops/issues
-License: Unlicense (public domain) - see UNLICENSE file
+Module name:    epo-ops
+Description:    Access some basic EPO Open Patent Services with node.js
+Author:         Franklin van de Meent (https://frankl.in);
+Source & docs:  https://github.com/fvdm/nodejs-epo-ops
+Feedback:       https://github.com/fvdm/nodejs-epo-ops/issues
+License:        Unlicense (public domain) - see UNLICENSE file
 
 Service name: European Patent Office - Open Patent Services
 Service docs: http://www.epo.org/searching/free/ops.html
