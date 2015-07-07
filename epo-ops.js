@@ -10,7 +10,7 @@ Service name: European Patent Office - Open Patent Services
 Service docs: http://www.epo.org/searching/free/ops.html
 */
 
-var http = require ('http');
+var http = require ('httpreq');
 var app = {};
 
 // Search worldwide
@@ -21,58 +21,39 @@ app.search = function (query, constituents, cb) {
     var constituents = 'abstract';
   }
 
-  app.talk ('GET', 'published-data/search/'+ constituents +'?q='+ query, function (result) {
+  var url = 'http://ops.epo.org/2.6.2/rest-services/published-data/search/'+ constituents;
+
+  var opts = {
+    parameters: { q: query },
+    headers: { Accept: 'application/json' },
+    timeout: 5000
+  };
+
+  http.get (url, opts, function (err, res) {
     var results = {};
-    result ['ops:world-patent-data'] ['ops:biblio-search'] ['ops:search-result'] ['exchange-documents'] .forEach (function (doc) {
-      var doc = doc ['exchange-document'];
+    try {
+      var result = JSON.parse (res.body);
 
-      // fix document IDs
-      var docId = doc ['@doc-number'];
-      var docIds = {};
-      doc ['bibliographic-data'] ['publication-reference'] ['document-id'] .forEach (function (did) {
-        docIds [did ['@document-id-type']] = did;
+      result ['ops:world-patent-data'] ['ops:biblio-search'] ['ops:search-result'] ['exchange-documents'] .forEach (function (doc) {
+        var doc = doc ['exchange-document'];
+
+        // fix document IDs
+        var docId = doc ['@doc-number'];
+        var docIds = {};
+        doc ['bibliographic-data'] ['publication-reference'] ['document-id'] .forEach (function (did) {
+          docIds [did ['@document-id-type']] = did;
+        });
+        doc ['bibliographic-data'] ['publication-reference'] ['document-id'] = docIds;
+        docId = doc ['bibliographic-data'] ['publication-reference'] ['document-id'] .epodoc ['doc-number'];
+
+        // add to results
+        results [docId] = doc;
       });
-      doc ['bibliographic-data'] ['publication-reference'] ['document-id'] = docIds;
-      docId = doc ['bibliographic-data'] ['publication-reference'] ['document-id'] .epodoc ['doc-number'];
-
-      // add to results
-      results [docId] = doc;
-    });
+    }
+    catch (e) {}
 
     cb (results);
   });
-}
-
-// Communicate
-app.talk = function (method, path, fields, cb) {
-  if (!cb && typeof fields === 'function') {
-    var cb = fields;
-    var fields = {};
-  }
-
-  var req = http.request (
-    {
-      host: 'ops.epo.org',
-      path: '/2.6.2/rest-services/'+ path,
-      port: 80,
-      method: method,
-      headers: {
-        Accept: 'application/json';
-      }
-    },
-    function (response) {
-      var data = '';
-      response.setEncoding ('utf8');
-      response.on ('data', function (chunk) { data += chunk; });
-      response.on ('end', function () {
-        data = data.trim ();
-        data = JSON.parse (data);
-        cb (data);
-      });
-    }
- );
-
-  req.end ();
 };
 
 // ready
