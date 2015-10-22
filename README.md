@@ -8,13 +8,12 @@ Example
 -------
 
 ```js
-var ops = require ('epo-ops');
-
-ops.search ('test', function (results) {
-  results.forEach (function (doc, docId) {
-    console.log (docId +': '+ doc.abstract.p[0].$);
-  });
+var ops = require ('epo-ops') ({
+  consumer_key: 'abc123',
+  consumer_secret: '987xyz'
 });
+
+ops.get ('/developers/me/stats/usage', { timeRange: '01-01-2015' }, console.log);
 ```
 
 
@@ -26,20 +25,78 @@ Normal: `npm install epo-ops`
 Development: `npm install fvdm/nodejs-epo-ops#develop`
 
 
-.search ( query, [constituents], callback )
+Methods
 -------
 
-Search patents worldwide.
+Each method below takes a callback _function_ to process the results.
+This callback receives two arguments: `err` and `data`.
+When an error occurs, `err` is an instance of _Error_.
+When everything is alright `err` is _null_ and `data` is the result.
 
 
-parameter    | type     | required | default  | description
-:------------|:---------|:---------|:---------|:-----------------
-query        | string   | yes      |          | search keywords
-constituents | string   | no       | abstract | result type
-callback     | function | yes      |          | callback function
+### Errors
+
+message        | description                | properties
+request failed | The request cannot be made |
+API error      | The API returned an error  | `error`
 
 
-**constituents** can be `abstract`, `biblio`, `full-cycle` or comma-seperated combination.
+### .get
+**( path, [params], callback )**
+
+Get a resource.
+
+
+parameter | type     | required | default  | description
+:---------|:---------|:---------|:---------|:-----------------
+path      | string   | yes      |          | Resource path part after `/3.1`
+params    | object   | no       |          | Resource parameters
+callback  | function | yes      |          | Callback function
+
+
+```js
+var params = {
+  timeRange: '01-01-2015'
+};
+
+ops.get ('/developers/me/stats/usage', params, console.log);
+```
+
+
+### .accessToken
+**( callback )**
+
+Get a new access token.
+
+
+parameter | type     | required | default  | description
+:---------|:---------|:---------|:---------|:-----------------
+callback  | function | yes      |          | Callback function
+
+
+```js
+ops.accessToken (function (err, res) {
+  if (err) {
+    return console.log (err);
+  }
+
+  console.log ('New access_token: %s', res.access_token);
+});
+```
+
+
+### .status
+
+Status is an _object_ with quota and access information from the API.
+A request must already been made to populate this object.
+
+
+```js
+ops.accessToken (function (err, res) {
+  console.log (ops.status);
+});
+```
+
 
 
 Unlicense
