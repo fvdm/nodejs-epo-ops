@@ -37,6 +37,7 @@ When everything is alright `err` is _null_ and `data` is the result.
 ### Errors
 
 message        | description                | properties
+:--------------|:---------------------------|:----------
 request failed | The request cannot be made |
 API error      | The API returned an error  | `error`
 
