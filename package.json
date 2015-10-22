@@ -16,7 +16,8 @@
   },
   "main":                 "epo-ops.js",
   "dependencies": {
-    "httpreq":            "0.4.x"
+    "httpreq":            "0.4.x",
+    "simple-xml2json":    "fvdm/simple-xml2json#patch"
   },
   "devDependencies":      {},
   "optionalDependencies": {},
