@@ -10,7 +10,7 @@ Service name:   European Patent Office - Open Patent Services
 Service docs:   http://www.epo.org/searching/free/ops.html
 */
 
-var xml2json = require ('/Users/ducktales/Storebox/Code/Github/fvdm/nodejs/simple-xml2json') .parser;
+var xml2json = require ('simple-xml2json') .parser;
 var http = require ('httpreq');
 
 var config = {};
