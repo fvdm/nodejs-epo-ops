@@ -1,29 +1,34 @@
 {
   "author": {
-    "name":               "Franklin van de Meent",
-    "email":              "fr@nkl.in",
-    "url":                "https://frankl.in"
+    "name": "Franklin van de Meent",
+    "email": "fr@nkl.in",
+    "url": "https://frankl.in"
   },
-  "name":                 "epo-ops",
-  "description":          "Access some basic EPO Open Patent Services",
-  "version":              "0.1.0",
+  "name": "epo-ops",
+  "description": "Access some basic EPO Open Patent Services",
+  "version": "0.1.0",
   "repository": {
-    "type":               "git",
-    "url":                "git://github.com/fvdm/nodejs-epo-ops.git"
+    "type": "git",
+    "url": "git://github.com/fvdm/nodejs-epo-ops.git"
   },
   "bugs": {
-    "url":                "https://github.com/fvdm/nodejs-epo-ops/issues"
+    "url": "https://github.com/fvdm/nodejs-epo-ops/issues"
   },
-  "main":                 "epo-ops.js",
+  "main": "epo-ops.js",
   "dependencies": {
-    "httpreq":            "0.4.x",
-    "simple-xml2json":    "fvdm/simple-xml2json#patch"
+    "httpreq": "0.4.20",
+    "simple-xml2json": "fvdm/simple-xml2json#patch"
   },
-  "devDependencies":      {},
+  "devDependencies": {},
   "optionalDependencies": {},
   "engines": {
-    "node":               "*"
+    "node": "*"
   },
-  "keywords":             ["patents", "search", "middleware", "gov"],
-  "license":              "Unlicense"
+  "keywords": [
+    "patents",
+    "search",
+    "middleware",
+    "gov"
+  ],
+  "license": "Unlicense"
 }
