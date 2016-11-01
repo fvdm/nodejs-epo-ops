@@ -22,7 +22,7 @@
   "devDependencies":      {},
   "optionalDependencies": {},
   "engines": {
-    "node":               "*"
+    "node":               ">= 4"
   },
   "keywords":             ["patents", "search", "middleware", "gov"],
   "license":              "Unlicense"
